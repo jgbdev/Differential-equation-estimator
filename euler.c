@@ -28,7 +28,7 @@ int startPower(char * str){
 	
 	int pos = strContains(str,'.');
 	if(!pos){
-		return strlen(str)-1;
+		return strlen(str)-2;
 	}
 	else{
 		return pos - 2;	
@@ -107,11 +107,18 @@ double diff(double x,double y){
 
 int main(){
 
-	printf("Start point");
-	double in = readDouble();
-	printf("Deb: %f\n",in);
-	double h = 0.02;
-	//eulerMethod(0,1,1,h);
+	printf("Start X\n");
+	double x0 = readDouble();
+	printf("Start Y\n");
+	double y0 = readDouble();
+	printf("Interval\n");
+	double h = readDouble();
+	printf("End X\n");
+	double xEnd = readDouble();
+	
+	eulerMethod(x0,xEnd,y0,h);
+	
+	
 	return 0;
 }
 
