@@ -3,6 +3,9 @@
 #include <math.h>
 #include <string.h>
 
+
+double diff(double x, double y);
+
 /*
 	Replicate built in function to reverse a string	
 */
@@ -56,14 +59,51 @@ int readInt(){
 	return out;
 }
 
+void eulerMethod(double x0, double xEnd, double y0, double h){
+	double x = x0;
+	double y = y0;
+	int reached = x<xEnd;
+	
+	if(!reached){
+		h = -h;
+	}
+
+	int euler = 0;
+	while((x<xEnd) == reached){
+
+		if(euler){
+			y += h*diff(x,y);
+		}else{
+			double k1,k2,k3,k4;
+			k1 = diff(x,y);
+			k2 = diff(x+h/2,y + h*k1*0.5);
+			k3 = diff(x+h/2,y + h*k2*0.5);
+			k4 = diff(x+h,y + h*k3);
+			y += h/6*(k1 + 2*k2 + 2*k3 + k4);
+		}
+		
+		x+=h;
+		printf("x: %f  y: %f\n", x,y);
+		
+		
+
+
+	}
+	
+}
+
+
+
+double diff(double x,double y){
+	return y;
+}
 
 int main(){
 
-	int in = readInt();
-
-		
-	
-
+	printf("Start point");
+	in = readInt();
+	double h = 0.02;
+	eulerMethod(0,1,1,h);
 	return 0;
 }
 
